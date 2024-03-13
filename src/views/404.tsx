@@ -1,5 +1,6 @@
 import { Button, Result } from 'antd'
 import { useNavigate } from 'react-router-dom'
+import env from '@/config'
 
 function Error404() {
   const navigate = useNavigate()
@@ -9,17 +10,17 @@ function Error404() {
   return (
     <Result
       status={404}
-      title="お探しのページは見つかりませんでした。"
+      title={env.appText.error404.title}
       extra={
         <Button type="primary" onClick={handleClick}>
-          トップページへ戻る
+          {env.appText.backToHome}
         </Button>
       }
       subTitle={
         <>
-          <span>お探しのページは見つかりませんでした。</span>
+          <span>{env.appText.error404.title}</span>
           <br />
-          <span>お手数ですが、トップページから再度お探しください。</span>
+          <span>{env.appText.error404.subTitle}</span>
         </>
       }
     />
