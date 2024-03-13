@@ -1,5 +1,6 @@
 import { Button, Result } from 'antd'
 import { useNavigate } from 'react-router-dom'
+import env from '@/config'
 
 function Error403() {
   const navigate = useNavigate()
@@ -9,13 +10,13 @@ function Error403() {
   return (
     <Result
       status={403}
-      title="アクセスが拒否されました。"
+      title={env.appText.error403.title}
       extra={
         <Button type="primary" onClick={handleClick}>
-          トップページへ戻る
+          {env.appText.backToHome}
         </Button>
       }
-      subTitle="このページにアクセスするための十分な権限を持っていません。"
+      subTitle={env.appText.error403.subTitle}
     />
   )
 }
