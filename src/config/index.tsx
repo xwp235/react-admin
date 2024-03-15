@@ -41,18 +41,30 @@ const config = {
 
 export default {
   env,
-  ...config['prod'],
-  appText: {
-    backToHome: 'トップページへ戻る',
-    requestTimeout: 'サーバへのリクエストがタイムアウトしました',
-    loading: '読み込み中',
-    error404: {
-      title: 'お探しのページは見つかりませんでした。',
-      subTitle: 'お手数ですが、トップページから再度お探しください。'
-    },
-    error403: {
-      title: 'アクセスが拒否されました。',
-      subTitle: 'このページにアクセスするための十分な権限を持っていません。'
-    }
+  ...config['prod']
+}
+
+export const appText = {
+  backToHome: 'トップページへ戻る',
+  requestTimeout: 'サーバへのリクエストがタイムアウトしました',
+  loading: '読み込み中',
+  error404: {
+    title: 'お探しのページは見つかりませんでした。',
+    subTitle: 'お手数ですが、トップページから再度お探しください。'
+  },
+  error403: {
+    title: 'アクセスが拒否されました。',
+    subTitle: 'このページにアクセスするための十分な権限を持っていません。'
+  },
+  validation: {
+    usernameBlank: 'ユーザー名を入力してください',
+    passwordBlank: 'パスワードを入力してください'
+  },
+  loginPage: {
+    loginBtn: 'ログイン',
+    loginFormTitle: '管理システム',
+    loginFormSubTitle: 'ログイン',
+    loginSuccessTip: 'ログインしました。',
+    loginSuccessSubTip: '次のページへ自動的に遷移します。'
   }
 }
