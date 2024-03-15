@@ -1,13 +1,24 @@
-import './App.css'
-import { BrowserRouter } from 'react-router-dom'
+import './App.scss'
+import { RouterProvider } from 'react-router-dom'
+import { App as AntdApp, ConfigProvider } from 'antd'
+import AntdGlobal from './utils/AntdGlobal'
 
-import Router from './router'
+import router from './router'
 
 function App() {
   return (
-    <BrowserRouter>
-      <Router />
-    </BrowserRouter>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: '#ed6c00'
+        }
+      }}
+    >
+      <AntdApp>
+        <AntdGlobal />
+        <RouterProvider router={router} />
+      </AntdApp>
+    </ConfigProvider>
   )
 }
 

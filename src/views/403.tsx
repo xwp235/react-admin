@@ -1,6 +1,6 @@
 import { Button, Result } from 'antd'
 import { useNavigate } from 'react-router-dom'
-import env from '@/config'
+import { appText } from '@/config'
 
 function Error403() {
   const navigate = useNavigate()
@@ -10,13 +10,13 @@ function Error403() {
   return (
     <Result
       status={403}
-      title={env.appText.error403.title}
+      title={appText.error403.title}
       extra={
         <Button type="primary" onClick={handleClick}>
-          {env.appText.backToHome}
+          {appText.backToHome}
         </Button>
       }
-      subTitle={env.appText.error403.subTitle}
+      subTitle={appText.error403.subTitle}
     />
   )
 }

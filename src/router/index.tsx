@@ -1,6 +1,6 @@
-import { Navigate, useRoutes } from 'react-router-dom'
+import { createBrowserRouter, Navigate } from 'react-router-dom'
 
-import Login from '@/views/Login'
+import Login from '@/views/login/Login'
 import Error403 from '@/views/403'
 import Error404 from '@/views/404'
 import Welcome from '@/views/Welcome'
@@ -29,8 +29,5 @@ const router = [
   }
 ]
 
-function Router() {
-  return useRoutes(router)
-}
-
-export default Router
+const browserRouter = createBrowserRouter(router)
+export default browserRouter
