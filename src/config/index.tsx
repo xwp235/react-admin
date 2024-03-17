@@ -48,6 +48,15 @@ export const appText = {
   backToHome: 'トップページへ戻る',
   requestTimeout: 'サーバへのリクエストがタイムアウトしました',
   loading: '読み込み中',
+  logout: 'ログアウト',
+  theme: {
+    default: 'デフォルト',
+    dark: 'ダーク'
+  },
+  fields: {
+    email: 'メール',
+    username: 'ユーザー'
+  },
   error404: {
     title: 'お探しのページは見つかりませんでした。',
     subTitle: 'お手数ですが、トップページから再度お探しください。'
