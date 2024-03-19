@@ -1,9 +1,13 @@
 import { Breadcrumb, Dropdown, MenuProps, Switch } from 'antd'
-import { MenuFoldOutlined } from '@ant-design/icons'
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
 import { appText } from '@/config'
 import styles from './index.module.scss'
+import { useSystemStore, useUserStore } from '@/store'
 
 function NavHeader() {
+  const userInfo = useUserStore(state => state.userInfo)
+  const { collapsed, updateCollapsed } = useSystemStore()
+
   const breadList = [
     {
       title: '首页'
@@ -15,7 +19,7 @@ function NavHeader() {
   const items: MenuProps['items'] = [
     {
       key: 'email',
-      label: appText.fields.email
+      label: `${appText.fields.email}:${userInfo.userEmail}`
     },
     {
       key: 'logout',
@@ -23,10 +27,27 @@ function NavHeader() {
     }
   ]
 
+  // 控制菜单图标关闭和展开
+  const toggleCollapsed = () => updateCollapsed()
+
   return (
     <div className={styles.navHeader}>
       <div className={styles.left}>
-        <MenuFoldOutlined />
+        <div onClick={toggleCollapsed} className={styles.toggleBtn}>
+          {collapsed ? (
+            <MenuUnfoldOutlined
+              style={{
+                fontSize: 24
+              }}
+            />
+          ) : (
+            <MenuFoldOutlined
+              style={{
+                fontSize: 24
+              }}
+            />
+          )}
+        </div>
         <Breadcrumb items={breadList} />
       </div>
       <div className={styles.right}>
@@ -36,7 +57,7 @@ function NavHeader() {
           unCheckedChildren={appText.theme.default}
         />
         <Dropdown menu={{ items }} trigger={['click']}>
-          <span className={styles.nickname}>{appText.fields.username}</span>
+          <span className={styles.nickname}>{userInfo.userName}</span>
         </Dropdown>
       </div>
     </div>

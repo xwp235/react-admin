@@ -7,15 +7,19 @@ import { TOKEN } from '@/config/constants.ts'
 import { appText } from '@/config'
 import { useState } from 'react'
 import { message } from '@/utils/AntdGlobal.ts'
+import { useUserStore } from '@/store'
 
 function Login() {
   const [loading, setLoading] = useState(false)
+
+  const updateToken = useUserStore(state => state.updateToken)
 
   const onLogin = async (loginParams: LoginParams) => {
     setLoading(true)
     try {
       const token = await AuthApi.login(loginParams)
       storage.set(TOKEN, token)
+      updateToken(token)
       message.success(
         <>
           <span>{appText.loginPage.loginSuccessTip}</span>

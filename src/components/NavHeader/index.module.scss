@@ -7,14 +7,23 @@
   background-color: #fff;
   //background-color: var(--dark-bg-color);
   color: var(--dark-color);
-}
 
-.left, .right {
-  display: flex;
-  align-items: center;
-}
+  .left, .right {
+    display: flex;
+    align-items: center;
+  }
 
-.nickname {
-  cursor: pointer;
-  color: var(--dark-color);
+  .left {
+    justify-content: center;
+
+    .toggleBtn {
+      cursor: pointer;
+      margin-right: 10px;
+    }
+  }
+
+  .nickname {
+    cursor: pointer;
+    color: var(--dark-color);
+  }
 }
