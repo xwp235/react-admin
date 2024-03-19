@@ -2,10 +2,11 @@ import { Menu } from 'antd'
 import { DesktopOutlined, SettingOutlined, TeamOutlined } from '@ant-design/icons'
 import styles from './index.module.scss'
 import { useNavigate } from 'react-router-dom'
+import { useSystemStore } from '@/store'
 
 function Sidebar() {
   const navigate = useNavigate()
-
+  const collapsed = useSystemStore(state => state.collapsed)
   const items = [
     {
       label: '工作台',
@@ -27,16 +28,13 @@ function Sidebar() {
   ]
 
   // Logo点击
-  const handleClickLogo = () => {
-    console.log('++')
-    navigate('/welcome')
-  }
+  const handleClickLogo = () => navigate('/welcome')
 
   return (
-    <div className="sidebar">
+    <div className={styles.navSide}>
       <div className={styles.logo} onClick={handleClickLogo}>
         <img src="/images/logo.png" className={styles.img} />
-        <span>慕课货运</span>
+        {collapsed ? '' : <span className={styles.logoText}>慕慕货运</span>}
       </div>
       <Menu
         defaultSelectedKeys={['1']}
@@ -44,6 +42,7 @@ function Sidebar() {
         theme="dark"
         items={items}
         style={{
+          width: collapsed ? 80 : 'auto',
           height: 'calc(100vh - 64px)'
         }}
       ></Menu>

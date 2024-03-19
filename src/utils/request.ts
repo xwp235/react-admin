@@ -39,7 +39,7 @@ instance.interceptors.request.use(
     if (config.showLoading) {
       showLoading()
     }
-    const token = storage.get('token')
+    const token = storage.get(TOKEN)
     if (token) {
       config.headers.Authorization = 'Bearer ' + token
     }
