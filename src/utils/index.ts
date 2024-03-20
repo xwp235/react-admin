@@ -1,3 +1,5 @@
+import { appText } from '@/config'
+
 // 格式化金额
 export const formatMoney = (num?: number | string) => {
   if (!num) {
@@ -59,4 +61,17 @@ export const formatDate = (date?: Date | string, rule?: string) => {
     fmt = fmt.replace(new RegExp(`(${k})`), O[k] > 9 ? O[k].toString() : '0' + O[k].toString())
   }
   return fmt
+}
+
+// 用户状态转换
+export const formatState = (state: number) => {
+  if (state === 1) {
+    return appText.working
+  }
+  if (state === 2) {
+    return appText.trialPeriod
+  }
+  if (state === 3) {
+    return appText.retired
+  }
 }
