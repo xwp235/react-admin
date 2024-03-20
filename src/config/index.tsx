@@ -45,17 +45,25 @@ export default {
 }
 
 export const appText = {
+  logoText: '慕慕货运',
   backToHome: 'トップページへ戻る',
   requestTimeout: 'サーバへのリクエストがタイムアウトしました',
   loading: '読み込み中',
   logout: 'ログアウト',
+  working: '在職',
+  retired: '退職',
+  trialPeriod: '試用期間',
   theme: {
     default: 'デフォルト',
     dark: 'ダーク'
   },
   fields: {
     email: 'メール',
-    username: 'ユーザー'
+    username: 'ユーザー',
+    status: 'ステータス',
+    mobile: '携帯',
+    job: '職種',
+    dept: '部署'
   },
   error404: {
     title: 'お探しのページは見つかりませんでした。',
@@ -75,5 +83,8 @@ export const appText = {
     loginFormSubTitle: 'ログイン',
     loginSuccessTip: 'ログインしました。',
     loginSuccessSubTip: '次のページへ自動的に遷移します。'
+  },
+  dashboardPage: {
+    welcomeText: '欢迎新同学，每天都开心！'
   }
 }

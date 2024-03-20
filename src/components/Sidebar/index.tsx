@@ -3,6 +3,7 @@ import { DesktopOutlined, SettingOutlined, TeamOutlined } from '@ant-design/icon
 import styles from './index.module.scss'
 import { useNavigate } from 'react-router-dom'
 import { useSystemStore } from '@/store'
+import { appText } from '@/config'
 
 function Sidebar() {
   const navigate = useNavigate()
@@ -34,7 +35,7 @@ function Sidebar() {
     <div className={styles.navSide}>
       <div className={styles.logo} onClick={handleClickLogo}>
         <img src="/images/logo.png" className={styles.img} />
-        {collapsed ? '' : <span className={styles.logoText}>慕慕货运</span>}
+        {collapsed ? '' : <span className={styles.logoText}>{appText.logoText}</span>}
       </div>
       <Menu
         defaultSelectedKeys={['1']}
