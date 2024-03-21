@@ -53,6 +53,11 @@ export const appText = {
   working: '在職',
   retired: '退職',
   trialPeriod: '試用期間',
+  all: '全て',
+  button: {
+    add: '追加',
+    batchDelete: '一括削除'
+  },
   theme: {
     default: 'デフォルト',
     dark: 'ダーク'
@@ -63,7 +68,8 @@ export const appText = {
     status: 'ステータス',
     mobile: '携帯',
     job: '職種',
-    dept: '部署'
+    dept: '部署',
+    userId: 'ユーザーID'
   },
   error404: {
     title: 'お探しのページは見つかりませんでした。',
@@ -74,6 +80,7 @@ export const appText = {
     subTitle: 'このページにアクセスするための十分な権限を持っていません。'
   },
   validation: {
+    userIdBlank: 'ユーザーIDを入力してください',
     usernameBlank: 'ユーザー名を入力してください',
     passwordBlank: 'パスワードを入力してください'
   },
@@ -86,5 +93,8 @@ export const appText = {
   },
   dashboardPage: {
     welcomeText: '欢迎新同学，每天都开心！'
+  },
+  userPage: {
+    title: 'ユーザーリスト'
   }
 }

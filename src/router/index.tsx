@@ -6,6 +6,7 @@ import Error404 from '@/views/404'
 import Layout from '@/layout'
 import Welcome from '@/views/welcome/Welcome'
 import Dashboard from '@/views/dashboard/Dashboard'
+import User from '@/views/system/user'
 
 const router = [
   {
@@ -27,6 +28,10 @@ const router = [
       {
         path: '/dashboard',
         element: <Dashboard />
+      },
+      {
+        path: '/user',
+        element: <User />
       }
     ]
   },

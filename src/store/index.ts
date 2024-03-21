@@ -1,11 +1,11 @@
 import { create } from 'zustand'
-import { LoginUserInfo } from '@/types/Api.ts'
+import { UserInfo } from '@/types/Api.ts'
 
 export const useUserStore = create<{
   token: string
-  userInfo: LoginUserInfo
+  userInfo: UserInfo
   updateToken: (token: string) => void
-  updateUserInfo: (userInfo: LoginUserInfo) => void
+  updateUserInfo: (userInfo: UserInfo) => void
 }>(set => ({
   token: '',
   userInfo: {
@@ -24,7 +24,7 @@ export const useUserStore = create<{
     userImg: ''
   },
   updateToken: token => set({ token }),
-  updateUserInfo: (userInfo: LoginUserInfo) => set({ userInfo })
+  updateUserInfo: (userInfo: UserInfo) => set({ userInfo })
 }))
 
 export const useSystemStore = create<{
