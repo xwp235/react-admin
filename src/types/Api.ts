@@ -4,7 +4,16 @@ export interface HttpResponse<T = any> {
   data: T
 }
 
-export interface LoginUserInfo {
+export interface PageData<T = any> {
+  list: T[]
+  page: {
+    pageNum: number
+    pageSize: number
+    total: number | 0
+  }
+}
+
+export interface UserInfo {
   _id: string
   userId: number
   userName: string
