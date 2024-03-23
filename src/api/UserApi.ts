@@ -9,14 +9,18 @@ export default {
   },
   // 创建用户
   createUser(params: CreateUserParams) {
-    return request.post('/users/create', params)
+    return request.post<void>('/users/create', params)
   },
   // 修改用户信息
   editUser(params: EditUserParams) {
-    return request.post('/users/edit', params)
+    return request.post<void>('/users/edit', params)
   },
   // 删除和批量删除用户
   delUser(params: { userIds: number[] }) {
-    return request.post('/users/delete', params)
+    return request.post<void>('/users/delete', params)
+  },
+  // 获取当前账号下的所有用户
+  getAllUserList() {
+    return request.get<UserInfo[]>('/users/all/list')
   }
 }
