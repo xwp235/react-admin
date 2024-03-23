@@ -1,39 +1,17 @@
 import { Button, Form, Input, Select, Table } from 'antd'
 import { appText } from '@/config'
-import useUserPage from '@/views/system/user/useUserPage.tsx'
+import useUserPage from '@/views/system/user/UseUserPage.tsx'
+import SearchForm from '@/components/SearchForm'
+import CreateUser from '@/views/system/user/createUser.tsx'
+import React from 'react'
 
 export default function UserManage() {
-  // // 创建用户
-  // const handleCreate = () => {
-  //   // userRef.current?.open('create')
-  // }
-  //
-  // // 批量删除确认
-  // const handlePatchConfirm = () => {
-  //   // if (userIds.length === 0) {
-  //   //   message.error('请选择要删除的用户')
-  //   //   return
-  //   // }
-  //   // Modal.confirm({
-  //   //   title: '删除确认',
-  //   //   content: <span>确认删除该批用户吗？</span>,
-  //   //   onOk: () => {
-  //   //     handleUserDelSubmit(userIds)
-  //   //   }
-  //   // })
-  // }
-
-  const { data, columns } = useUserPage()
+  const { columns, form, tableProps, search, userRef, handleCreate, userIds, setUserIds, handleBatchDelete } =
+    useUserPage()
 
   return (
     <div className="user-wrapper">
-      <Form
-        className="search-form"
-        layout="inline"
-        initialValues={{
-          state: 1
-        }}
-      >
+      <SearchForm form={form} initialValues={{ state: 1 }} submit={search.submit} reset={search.reset}>
         <Form.Item name="userId" label={appText.fields.userId}>
           <Input placeholder={appText.validation.userIdBlank} />
         </Form.Item>
@@ -48,21 +26,41 @@ export default function UserManage() {
             <Select.Option value={3}>{appText.trialPeriod}</Select.Option>
           </Select>
         </Form.Item>
-      </Form>
+      </SearchForm>
 
       <div className="base-table">
         <div className="header-wrapper">
           <h3 className="title">{appText.userPage.title}</h3>
           <div className="action">
-            <Button type="primary">{appText.button.add}</Button>
-            <Button type="primary" danger>
+            <Button type="primary" onClick={handleCreate}>
+              {appText.button.add}
+            </Button>
+            <Button type="primary" danger onClick={handleBatchDelete}>
               {appText.button.batchDelete}
             </Button>
           </div>
         </div>
+        <Table
+          rowKey="userId"
+          bordered
+          rowSelection={{
+            type: 'checkbox',
+            selectedRowKeys: userIds,
+            onChange: (selectedRowKeys: React.Key[]) => {
+              setUserIds(selectedRowKeys as number[])
+            }
+          }}
+          {...tableProps}
+          columns={columns}
+        />
       </div>
 
-      <Table bordered rowSelection={{ type: 'checkbox' }} dataSource={data} columns={columns} />
+      <CreateUser
+        mRef={userRef}
+        update={() => {
+          search.reset()
+        }}
+      />
     </div>
   )
 }

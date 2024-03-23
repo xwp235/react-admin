@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequ
 import storage from '@/utils/storage.ts'
 import env, { appText } from '@/config'
 import { HttpResponse } from '@/types/Api.ts'
-import { TOKEN } from '@/config/constants.ts'
+import { icode, TOKEN } from '@/config/constants.ts'
 import { message } from './AntdGlobal.ts'
 import { hideLoading, showLoading } from '@/utils/loading'
 
@@ -29,7 +29,7 @@ const instance = axios.create({
   timeoutErrorMessage: appText.requestTimeout,
   withCredentials: true,
   headers: {
-    icode: '177A26ACA327E2A4'
+    icode
   }
 })
 
@@ -41,7 +41,7 @@ instance.interceptors.request.use(
     }
     const token = storage.get(TOKEN)
     if (token) {
-      config.headers.Authorization = 'Bearer ' + token
+      config.headers.Authorization = `Bearer ${token}`
     }
     if (env.mock) {
       config.baseURL = env.mockApi
