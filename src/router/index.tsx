@@ -7,6 +7,7 @@ import Layout from '@/layout'
 import Welcome from '@/views/welcome/Welcome'
 import Dashboard from '@/views/dashboard/Dashboard'
 import User from '@/views/system/user'
+import Dept from '@/views/system/dept'
 
 const router = [
   {
@@ -32,6 +33,10 @@ const router = [
       {
         path: '/user',
         element: <User />
+      },
+      {
+        path: '/dept',
+        element: <Dept />
       }
     ]
   },
