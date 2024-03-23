@@ -13,6 +13,11 @@ export interface PageData<T = any> {
   }
 }
 
+export interface PageParams {
+  pageNum: number
+  pageSize: number
+}
+
 export interface UserInfo {
   _id: string
   userId: number
