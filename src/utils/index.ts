@@ -1,4 +1,5 @@
 import { appText } from '@/config'
+import { MenuItem } from '@/types/Menu'
 
 // 格式化金额
 export const formatMoney = (num?: number | string) => {
@@ -74,4 +75,34 @@ export const formatState = (state: number) => {
   if (state === 3) {
     return appText.retired
   }
+}
+
+// 获取页面路径
+export const getMenuPath = (list: MenuItem[]): string[] => {
+  return list.reduce((result: string[], item: MenuItem) => {
+    return result.concat(Array.isArray(item.children) && !item.buttons ? getMenuPath(item.children) : item.path + '')
+  }, [])
+}
+
+/**
+ * 递归查找树的路径
+ */
+export const findTreeNode = (tree: MenuItem[], pathName: string, path: string[]): string[] => {
+  if (!tree) {
+    return []
+  }
+  for (const data of tree) {
+    path.push(data.menuName)
+    if (data.path === pathName) {
+      return path
+    }
+    if (data.children?.length) {
+      const list = findTreeNode(data.children, pathName, path)
+      if (list?.length) {
+        return list
+      }
+    }
+    path.pop()
+  }
+  return []
 }

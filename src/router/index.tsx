@@ -5,9 +5,9 @@ import Error403 from '@/views/403'
 import Error404 from '@/views/404'
 import Layout from '@/layout'
 import Welcome from '@/views/welcome/Welcome'
-import Dashboard from '@/views/dashboard/Dashboard'
-import User from '@/views/system/user'
-import Dept from '@/views/system/dept'
+import AuthLoader from '@/router/AuthLoader'
+import { lazyLoad } from './LazyLoad'
+import React from 'react'
 
 const router = [
   {
@@ -21,6 +21,7 @@ const router = [
   {
     id: 'layout',
     element: <Layout />,
+    loader: AuthLoader,
     children: [
       {
         path: '/welcome',
@@ -28,15 +29,19 @@ const router = [
       },
       {
         path: '/dashboard',
-        element: <Dashboard />
+        element: lazyLoad(React.lazy(() => import('@/views/dashboard/Dashboard')))
       },
       {
         path: '/user',
-        element: <User />
+        element: lazyLoad(React.lazy(() => import('@/views/system/user')))
       },
       {
         path: '/dept',
-        element: <Dept />
+        element: lazyLoad(React.lazy(() => import('@/views/system/dept')))
+      },
+      {
+        path: '/menu',
+        element: lazyLoad(React.lazy(() => import('@/views/system/menu')))
       }
     ]
   },

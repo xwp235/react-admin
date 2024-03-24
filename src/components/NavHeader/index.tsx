@@ -1,21 +1,14 @@
-import { Breadcrumb, Dropdown, MenuProps, Switch } from 'antd'
+import { Dropdown, MenuProps, Switch } from 'antd'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
 import { appText } from '@/config'
 import styles from './index.module.scss'
 import { useSystemStore, useUserStore } from '@/store'
+import CreateBreadcrumb from '@/components/NavHeader/CreateBreadcrumb'
 
 function NavHeader() {
   const userInfo = useUserStore(state => state.userInfo)
   const { collapsed, updateCollapsed } = useSystemStore()
 
-  const breadList = [
-    {
-      title: '首页'
-    },
-    {
-      title: '工作台'
-    }
-  ]
   const items: MenuProps['items'] = [
     {
       key: 'email',
@@ -48,7 +41,7 @@ function NavHeader() {
             />
           )}
         </div>
-        <Breadcrumb items={breadList} />
+        <CreateBreadcrumb />
       </div>
       <div className={styles.right}>
         <Switch
