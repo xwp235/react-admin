@@ -10,7 +10,7 @@ import { IAuthLoader } from '@/router/AuthLoader.ts'
 
 function Sidebar() {
   const navigate = useNavigate()
-  const collapsed = useSystemStore(state => state.collapsed)
+  const { collapsed, isDark } = useSystemStore(state => ({ collapsed: state.collapsed, isDark: state.isDark }))
   const data = useRouteLoaderData('layout') as IAuthLoader
   const [selectedKeys, setSelectedKeys] = useState<string[]>([])
   const { pathname } = useLocation()
@@ -85,7 +85,7 @@ function Sidebar() {
       </div>
       <Menu
         mode="inline"
-        theme="dark"
+        theme={isDark ? 'light' : 'dark'}
         style={{
           width: collapsed ? 80 : 'auto',
           height: 'calc(100vh - 64px)'

@@ -4,10 +4,16 @@ import { appText } from '@/config'
 import styles from './index.module.scss'
 import { useSystemStore, useUserStore } from '@/store'
 import CreateBreadcrumb from '@/components/NavHeader/CreateBreadcrumb'
+import storage from '@/utils/storage'
+import { useEffect } from 'react'
 
 function NavHeader() {
   const userInfo = useUserStore(state => state.userInfo)
-  const { collapsed, updateCollapsed } = useSystemStore()
+  const { collapsed, updateCollapsed, isDark, updateTheme } = useSystemStore()
+
+  useEffect(() => {
+    handleSwitch(isDark)
+  }, [])
 
   const items: MenuProps['items'] = [
     {
@@ -22,6 +28,18 @@ function NavHeader() {
 
   // 控制菜单图标关闭和展开
   const toggleCollapsed = () => updateCollapsed()
+
+  const handleSwitch = (isDark: boolean) => {
+    if (isDark) {
+      document.documentElement.dataset.theme = 'dark'
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.dataset.theme = 'light'
+      document.documentElement.classList.remove('dark')
+    }
+    storage.set('isDark', isDark)
+    updateTheme(isDark)
+  }
 
   return (
     <div className={styles.navHeader}>
@@ -45,9 +63,11 @@ function NavHeader() {
       </div>
       <div className={styles.right}>
         <Switch
+          checked={isDark}
           style={{ marginRight: 30 }}
           checkedChildren={appText.theme.dark}
           unCheckedChildren={appText.theme.default}
+          onChange={handleSwitch}
         />
         <Dropdown menu={{ items }} trigger={['click']}>
           <span className={styles.nickname}>{userInfo.userName}</span>
