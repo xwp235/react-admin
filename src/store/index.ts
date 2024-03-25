@@ -1,5 +1,6 @@
 import { create } from 'zustand'
-import { UserInfo } from '@/types/Api.ts'
+import { UserInfo } from '@/types/Api'
+import storage from '@/utils/storage'
 
 export const useUserStore = create<{
   token: string
@@ -29,13 +30,17 @@ export const useUserStore = create<{
 
 export const useSystemStore = create<{
   collapsed: boolean
+  isDark: boolean
   updateCollapsed: () => void
+  updateTheme: (isDark: boolean) => void
 }>(set => ({
   collapsed: false,
+  isDark: storage.get('isDark') || false,
   updateCollapsed: () =>
     set(state => {
       return {
         collapsed: !state.collapsed
       }
-    })
+    }),
+  updateTheme: isDark => set({ isDark })
 }))
