@@ -7,6 +7,7 @@ import { Outlet } from 'react-router-dom'
 import styles from './index.module.scss'
 import AuthApi from '@/api/AuthApi.ts'
 import { useSystemStore, useUserStore } from '@/store'
+import TabsFC from '@/components/Tabs'
 
 const { Sider } = Layout
 
@@ -32,6 +33,7 @@ const App: React.FC = () => {
           </Sider>
           <Layout>
             <NavHeader />
+            <TabsFC />
             <div className={styles.content}>
               <div className={styles.wrapper}>
                 <Outlet></Outlet>

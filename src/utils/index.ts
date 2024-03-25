@@ -106,3 +106,19 @@ export const findTreeNode = (tree: MenuItem[], pathName: string, path: string[])
   }
   return []
 }
+
+// 递归获取路由对象
+export const searchRoute = (path: string, routes: MenuItem[] = []): MenuItem | null => {
+  for (const item of routes) {
+    if (item.path === path) {
+      return item
+    }
+    if (item.children) {
+      const result = searchRoute(path, item.children)
+      if (result) {
+        return result
+      }
+    }
+  }
+  return null
+}
