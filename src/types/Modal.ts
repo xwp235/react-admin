@@ -8,6 +8,11 @@ export interface IModalProp<T = UserInfo> {
   update: () => void
 }
 
+export interface IPermissionModalProp<T = UserInfo> {
+  mRef: MutableRefObject<{ open: (data: T) => void } | undefined>
+  update: () => void
+}
+
 export interface IDetailProp {
   mRef: MutableRefObject<{ open: (orderId: string) => void } | undefined>
 }
