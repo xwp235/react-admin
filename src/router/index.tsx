@@ -9,7 +9,7 @@ import AuthLoader from '@/router/AuthLoader'
 import { lazyLoad } from './LazyLoad'
 import React from 'react'
 
-const router = [
+export const router = [
   {
     path: '/',
     element: <Navigate to="/welcome" />
@@ -26,6 +26,10 @@ const router = [
       {
         path: '/welcome',
         element: <Welcome />
+        // 如果页面不需要鉴权可设置auth为false
+        // meta: {
+        //   auth: false
+        // }
       },
       {
         path: '/dashboard',
@@ -42,6 +46,10 @@ const router = [
       {
         path: '/menu',
         element: lazyLoad(React.lazy(() => import('@/views/system/menu')))
+      },
+      {
+        path: '/role',
+        element: lazyLoad(React.lazy(() => import('@/views/system/role')))
       }
     ]
   },

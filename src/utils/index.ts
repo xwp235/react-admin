@@ -108,7 +108,7 @@ export const findTreeNode = (tree: MenuItem[], pathName: string, path: string[])
 }
 
 // 递归获取路由对象
-export const searchRoute = (path: string, routes: MenuItem[] = []): MenuItem | null => {
+export const searchRoute: any = (path: string, routes: MenuItem[] = []) => {
   for (const item of routes) {
     if (item.path === path) {
       return item

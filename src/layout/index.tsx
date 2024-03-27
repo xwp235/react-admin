@@ -3,11 +3,14 @@ import { Layout, Watermark } from 'antd'
 import NavHeader from '@/components/NavHeader'
 import NavFooter from '@/components/NavFooter'
 import Sidebar from '@/components/Sidebar'
-import { Outlet } from 'react-router-dom'
+import { Navigate, Outlet, useLocation, useRouteLoaderData } from 'react-router-dom'
 import styles from './index.module.scss'
 import AuthApi from '@/api/AuthApi.ts'
 import { useSystemStore, useUserStore } from '@/store'
 import TabsFC from '@/components/Tabs'
+import { IAuthLoader } from '@/router/AuthLoader'
+import { searchRoute } from '@/utils'
+import { router } from '@/router'
 
 const { Sider } = Layout
 
@@ -23,6 +26,20 @@ const App: React.FC = () => {
       getUserInfo()
     }
   }, [])
+
+  // 权限判断
+  const { pathname } = useLocation()
+  const data = useRouteLoaderData('layout') as IAuthLoader
+  const route = searchRoute(pathname, router)
+  // if (route && route.meta.auth === false) {
+  // 继续执行
+  // }
+  if (!route || route.meta.auth) {
+    const staticPath = ['/welcome', '/403', '/404']
+    if (!data.menuPathList.includes(pathname) && !staticPath.includes(pathname)) {
+      return <Navigate to="/403" />
+    }
+  }
 
   return (
     <Watermark content="React">

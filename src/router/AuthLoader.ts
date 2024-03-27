@@ -12,7 +12,9 @@ export default async function AuthLoader() {
   const data = await AuthApi.getPermissionList()
   const menuPathList = getMenuPath(data.menuList)
   return {
+    // 获取页面按钮权限
     buttonList: data.buttonList,
+    // 渲染页面左侧主菜单
     menuList: data.menuList,
     menuPathList
   }
